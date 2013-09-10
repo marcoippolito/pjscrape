@@ -1,5 +1,5 @@
-// Easy Web Scraping With Node.js - miguelgrinberg //
-// http://blog.miguelgrinberg.com/post/easy-web-scraping-with-nodejs /
+//  Easy Web Scraping With Node.js - miguelgrinberg //
+//  http://blog.miguelgrinberg.com/post/easy-web-scraping-with-nodejs /
 
 var request = require('request');
 var cheerio = require('cheerio');
