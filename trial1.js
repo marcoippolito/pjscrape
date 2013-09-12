@@ -1,29 +1,32 @@
-//   Easy Web Scraping With Node.js - miguelgrinberg //
-//  http://blog.miguelgrinberg.com/post/easy-web-scraping-with-nodejs /
-
+//  http://blog.miguelgrinberg.com/post/easy-web-scraping-with-nodejs
+// https://github.com/marcoippolito/cheerio
 var request = require('request');
 var cheerio = require('cheerio');
-
+var fs = require('fs');
 // the scope of JS functions is defined at the time the function is created.//
-
 //for (pool in pools) {
 var url = 'http://www.ucimu.it/catalogo/imprese/elenco/';
     // self-executing function. While a callback function is a function created now but runs later, a self-executing function is created and immediately executed.
     // Whatever this function will returns will be the result of the while expression
-request(url, (function() {
+var companies = [];
+request(url, ( function() {
   return function(err, resp, body) {
     if (err)
       throw err;
-    else
-      $ = cheerio.load(body);
-      // TODO: scraping goes here!
-      // First, locate the <href> element that defines a company //
-      var companies = [];
-      $('a[href^="catalogo/imprese"]').each(function(i, elem) {
-	companies[i] = $(this).text();
-      });
-
-      companies.join(', ');
-     console.log(companies);
+    $ = cheerio.load(body);
+    $('a[href^="catalogo/imprese"]').each(function(i, elem) {
+      companies[i] = $(this).text();
+      console.log($(this).text());
+    });
   };
-}));
+})());
+console.log(companies);
+// output: file text
+//var fmt = function(companies_array) {
+//  companies_array.join(",");
+//};
+
+//var outfile = 'ucimu1.txt';
+//var out = fmt(companies);
+//console.log(out);
+//fs.writeFileSync(outfile,out);
