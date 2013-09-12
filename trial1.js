@@ -17,11 +17,17 @@ request(url, ( function() {
     $('a[href^="catalogo/imprese"]').each(function(i, elem) {
       companies[i] = $(this).text();
       console.log($(this).text());
+      str = companies[i];
+      fs.appendFile('ucimu1.txt', 'str', function (err) {
+	if (err) throw err;
+	console.log('data appended');
+      });
     });
   };
 })());
-console.log(companies);
+//console.log(companies);
 // output: file text
+
 //var fmt = function(companies_array) {
 //  companies_array.join(",");
 //};
@@ -29,4 +35,7 @@ console.log(companies);
 //var outfile = 'ucimu1.txt';
 //var out = fmt(companies);
 //console.log(out);
-//fs.writeFileSync(outfile,out);
+//fs.writeFile(outfile,out, function (err)) {
+//  if (err) throw err;
+//  console.log('It\'s saved!');
+//});
