@@ -17,16 +17,16 @@ request(url, ( function() {
       throw err;
     $ = cheerio.load(body);
     $('a[href^="catalogo/imprese"]').each(function(i, elem) {
-//      companies.push($(this).text());
+      companies.push($(this).text());
       console.log($(this).text())|
-      fs.writeFile('ucimu1.txt',$(this).text(), function (err) {
+      fs.writeFile('ucimu1.txt',companies, function (err) {
         if (err) throw err;
+//        console.log('It\'s saved' + companies.length);
       });
-//      console.log(companies.length);
     });
+//  return companies;
   };
-  return companies;
-})());
-//console.log(companies.length);
+  })());
+
 // fetch data from level-2 sites //
 // for (var i = 1; i <= length(companies)
