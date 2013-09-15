@@ -4,6 +4,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
 var csv = require('csv');
+var w = require('./function_write.js'); 
 // the scope of JS functions is defined at the time the function is created.//
 //for (pool in pools) {
 var url = 'http://www.ucimu.it/catalogo/imprese/elenco/';
@@ -23,7 +24,7 @@ request(url, ( function() {
     console.log(companies);
     l = companies.length;
     console.log(l);
-    require('./function_write.js')('ucimu1.csv', companies);
+    w.write('ucimu1.csv', companies);
 
 //fetch data from level-2 sites //
     for (var i = 0;i < l; i++) {
