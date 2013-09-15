@@ -1,20 +1,36 @@
-#!/usr/bin/env node
+//  http://blog.miguelgrinberg.com/post/easy-web-scraping-with-nodejs
+// https://github.com/marcoippolito/cheerio
+var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
+var csv = require('csv');
+var w = require('./function_write.js'); 
+// the scope of JS functions is defined at the time the function is created.//
+//for (pool in pools) {
+var url = 'http://www.ucimu.it/catalogo/imprese/elenco/';
 
-$ = cheerio.load('&nbsp; </div> <a href="catalogo/imprese/v/adige/"> <img class="alignright" title="ADIGE S.P.A. -  BLM GROUP" alt="ADIGE S.P.A. -  BLM GROUP logo" src="typo3temp/pics/d116b5b9a3.png" width="120" height="23" /> </a> <div class="detail" style="margin-left:30px;"> <div class="title"><a href="catalogo/imprese/v/adige/">ADIGE S.P.A. -  BLM GROUP</a></div> <div class="abstract">LEVICO TERME (TN)</div> </div> </div> </div> <div class="record"> <div class="inner"><div class="detail" style="margin-left:30px;"> <div class="title"><a href="catalogo/imprese/v/mandelli-sistemi/">MANDELLI  SISTEMI</a></div> <div class="abstract">PIACENZA (PC)</div> </div> </div> </div> <div class="record"> <div class="inner"> <div class="marchioucimu"> &nbsp; </div> <div class="detail" style="margin-left:30px;"> <div class="title"><a href="catalogo/imprese/v/mapal/">MAPAL ITALIA S.R.L. CON UNICO SOCIO</a></div> <div class="abstract">GESSATE (MI)</div> </div> </div> </div> <div class="record"> <div class="inner">');
-var companies = [];
-$('a[href^="catalogo/imprese"]').each(function(i, elem) {
-  companies[i] = $(this).text();
-});
+    // self-executing function. While a callback function is a function created now but runs later, a self-executing function is created and immediately executed.
+    // Whatever this function will returns will be the result of the while expression
 
-console.log(companies);
-// output: file text
-//var fmt = function(companies_array) {
-//  companies_array.join(",");
-//};
+request(url, ( function() {
+  var companies = [];
+  return function(err, resp, body) {
+    if (err)
+      throw err;
+    $ = cheerio.load(body);
+    $('a[href^="catalogo/imprese"]').each(function(i, elem) {
+      companies.push($(this).text());
+    });
+    console.log(companies);
+    l = companies.length;
+    console.log(l);
+    w.write('ucimu1.csv', companies);
 
-//var outfile = 'ucimu2.txt';
-//var out = fmt(companies);
-//console.log(out);
-//fs.writeFileSync(outfile,out);
+//fetch data from level-2 sites //
+    for (var i = 0;i < l; i++) {
+      var url = 'http://www.ucimu.it/catalogo/imprese/v/' + companies[i];
+      console.log(url);
+
+    }
+  };
+})());
