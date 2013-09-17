@@ -5,10 +5,11 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var csv = require('csv');
 var w = require('./function_write.js');
-    // self-executing function. While a callback function is a function created now but runs later, a self-executing function is created and immediately executed.
-var url; var param;
-exports.scrape = function(url, param) {
-  request(url, ( function() {
+var stream = require('stream');
+    // Self-executing function. While a callback function is a function created now but runs later, a self-executing function is created and immediately executed.
+var url; var param; var companies;
+exports.scrape = function(url, param, callback) {
+  request(url, (function() {
     var companies = [];
     return function(err, resp, body) {
       if (err)
@@ -21,7 +22,12 @@ exports.scrape = function(url, param) {
       l = companies.length;
       console.log(l);
       w.write('ucimu1.csv', companies);
+//      var rs = fs.createReadStream(companies);
+//      var ws = fs.createWriteStream('./buffer.csv');
+//      rs.pipe(ws);
 
+//      Exports.companies = companies;
+      callback(companies);
     };
   })(url, param));
 };
