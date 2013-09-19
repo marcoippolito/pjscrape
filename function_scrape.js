@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
@@ -11,7 +13,7 @@ exports.scrape = function(url, param) {
   request();
 };
 
-var companies = [];
+var myArray = [];
 
 request(url, querySelector);
 
@@ -20,11 +22,11 @@ function querySelector(err, resp, body) {
     throw err;
   $ = cheerio.load(body);
   $(param).each(function(i, elem) {
-    companies.push($(this).text());
+    myArray.push($(this).text());
   });
-  w.write('ucimu2.csv', companies);
-  console.log(companies);
-  var l= companies.length;
+  w.write('ucimu2.csv', myArray);
+  console.log(myArray);
+  var l= myArray.length;
   console.log(l);
 }
-exports.companies = companies;
+exports.getArray = myArray;
