@@ -27,3 +27,4 @@ function querySelector(err, resp, body) {
   var l= companies.length;
   console.log(l);
 }
+exports.companies = companies;
