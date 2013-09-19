@@ -1,27 +1,29 @@
-//  http://blog.miguelgrinberg.com/post/easy-web-scraping-with-nodejs
-// https://github.com/marcoippolito/cheerio
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
 var csv = require('csv');
 var w = require('./function_write.js');
-    // self-executing function. While a callback function is a function created now but runs later, a self-executing function is created and immediately executed.
-var url; var param;
-exports.scrape = function(url, param, callback) {
-  request(url, (function() {
-    var companies = [];
-    return function(err, resp, body) {
-      if (err)
-	throw err;
-      $ = cheerio.load(body);
-      $(param).each(function(i, elem) {
-	companies.push($(this).text());
-      });
-      console.log(companies);
-//      l = companies.length;
-//      console.log(l);
-      w.write('ucimu1.csv', companies);
-      callback(companies);
-    };
-  })(url, param));
+
+var url = 'http://www.ucimu.it/catalogo/imprese/elenco/';
+var param = 'a[href^="catalogo/imprese"]';
+
+exports.scrape = function(url, param) {
+  request();
 };
+
+var companies = [];
+
+request(url, querySelector);
+
+function querySelector(err, resp, body) {
+  if (err)
+    throw err;
+  $ = cheerio.load(body);
+  $(param).each(function(i, elem) {
+    companies.push($(this).text());
+  });
+  w.write('ucimu2.csv', companies);
+  console.log(companies);
+  var l= companies.length;
+  console.log(l);
+}
