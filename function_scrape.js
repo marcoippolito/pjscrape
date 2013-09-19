@@ -9,7 +9,7 @@ var w = require('./function_write.js');
 var url = 'http://www.ucimu.it/catalogo/imprese/elenco/';
 var param = 'a[href^="catalogo/imprese"]';
 
-exports.scrape = function(url, param) {
+scrape = function(url, param) {
   request();
 };
 
@@ -29,4 +29,6 @@ function querySelector(err, resp, body) {
   var l= myArray.length;
   console.log(l);
 }
-exports.getArray = myArray;
+
+module.exports.scrape = scrape;
+module.exports.myArray = myArray;
