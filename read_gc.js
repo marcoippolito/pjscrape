@@ -1,0 +1,1 @@
+/home/ubuntu/read_gc.js
