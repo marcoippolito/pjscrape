@@ -1,1 +1,3 @@
-/home/ubuntu/read_gc.js
+var readwrite = require('./read_g');
+var prova = './ucimulist.csv';
+readwrite.fromfiletoarray(prova);
