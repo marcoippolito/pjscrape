@@ -20,8 +20,11 @@ function querySelector (err, resp, body) {
     throw err;
   $ = cheerio.load(body);
   $(param).each(function(i, elem) {
-    myArray.push($(this).text());
+      myArray.push($(this).text());
   });
+  for (var i = myArray.length-1; i--;) {
+    if (myArray[i] === 'Catalogo' || myArray[i] === 'Imprese Associate' || myArray[i] === 'Elenco completo' || myArray[i] === 'Elenco Completo' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' ) myArray.splice(i, 1);
+  }
 //  console.log(myArray);
 //  var l= myArray.length;
 //  console.log(l);
