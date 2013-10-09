@@ -1,5 +1,4 @@
 var fs = require('fs');
-var companyLinks = [];
 var outputfile;
 
 function fromfiletoarray (outputfile) {
@@ -9,10 +8,17 @@ function fromfiletoarray (outputfile) {
       return console.log(err);
     }
     companyLinks = data.toString().split(',');
-    console.log(companyLinks.length);
     console.log(companyLinks);
+    l = companyLinks.length;
+    console.log(l);
+    exports.getArray = companyLinks;
+
+    for (var i = 0; i < l; i++) {
+      url = 'http://www.ucimu.it/catalogo/imprese/v/' + companyLinks[i];
+      console.log(url);
+    }
   });
-};
+}
 //var outputfile = './outputdata.csv';
 //fromfiletoarray(outputfile);
 
