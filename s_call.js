@@ -7,12 +7,11 @@ var readwrite = require('./read_g');
 
 var url = 'http://www.ucimu.it/catalogo/imprese/elenco/';
 var param = 'a[href^="catalogo/imprese"]';
-
+var myArray =[];
+var outputfile = 'ucimulist.csv';
 scrape = function(url, param) {
   request();
 };
-
-var myArray = [];
 
 request(url, querySelector);
 
@@ -26,11 +25,13 @@ function querySelector (err, resp, body) {
 //  console.log(myArray);
 //  var l= myArray.length;
 //  console.log(l);
-  fs.writeFile("ucimulist.csv", myArray, function (err) {
+  fs.writeFile(outputfile, myArray, function (err) {
     if (err) throw err;
-    console.log('It\'s saved');
+    console.log('It\'s saved in: ' + outputfile);
   });
 }
+
 var prova = './ucimulist.csv';
-readwrite.fromfiletoarray(prova); 
+
+readwrite.fromfiletoarray(prova);
 module.exports.querySelector = querySelector;
