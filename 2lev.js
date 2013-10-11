@@ -6,9 +6,11 @@ var fs = require('fs');
 //var readwrite = require('./read_g');
 var url ='http://www.ucimu.it/catalogo/imprese/v/cosberg/';
 //var param = 'street';
+
 //scrape = function(url, param) {
 //  request();
 //};
+
 request(url, querySelector);
 
 function querySelector (err, resp, body) {
@@ -19,5 +21,7 @@ function querySelector (err, resp, body) {
   var company_name = $('.page_title').text();
   console.log(company_name);
   var address = $('.street').html();
-  console.log(address);
+  var toEl = /<br>/;
+  var newAddress = address.replace(toEl, " ");
+  console.log(newAddress);
 }
