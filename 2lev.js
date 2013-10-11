@@ -30,12 +30,13 @@ function querySelector (err, resp, body) {
     count[i] = $(this).text();
   });
   console.log(count);
-
-//    company.branch = {
-//      name: $('.name').text(),
+  company.branch = [];
+  for (var i = 0; i < count.length; i++) {
+    company.branch[i] = {
+      name: $('.name').eq(i).text()
 //      address: $('.address').html()
-
-//    console.log(company.branch);
-//  });
+    };
+  console.log(company.branch[i]);
+  }
 
 }
