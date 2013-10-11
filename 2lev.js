@@ -25,14 +25,17 @@ function querySelector (err, resp, body) {
   var toEl = /<br>/;
   var newAddress = company.address.replace(toEl, " ");
   console.log(newAddress);
-  var count = $('.name').length;
-  console.log(count);
+  var count = [];
   $('.name').each(function(i, elem) {
-    company.branch = {
-      name: $('.name').text(),
-      address: $('.address').html()
-    };
-    console.log(company.branch);
+    count[i] = $(this).text();
   });
+  console.log(count);
+
+//    company.branch = {
+//      name: $('.name').text(),
+//      address: $('.address').html()
+
+//    console.log(company.branch);
+//  });
 
 }
