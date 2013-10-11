@@ -27,8 +27,12 @@ function querySelector (err, resp, body) {
   console.log(newAddress);
   var count = $('.name').length;
   console.log(count);
-  var branches = [];
-//  $('.name').each(function(i, elem) {
-//    branches
+  $('.name').each(function(i, elem) {
+    company.branch = {
+      name: $('.name').text(),
+      address: $('.address').html()
+    };
+    console.log(company.branch);
+  });
 
 }
