@@ -29,12 +29,11 @@ function querySelector (err, resp, body) {
   $('.name').each(function(i, elem) {
     count[i] = $(this).text();
   });
-  console.log(count);
   company.branch = [];
   for (var i = 0; i < count.length; i++) {
     company.branch[i] = {
-      name: $('.name').eq(i).text()
-//      address: $('.address').html()
+      name: $('.name').eq(i).text(),
+      address: $('.address').eq(i+1).text()
     };
   console.log(company.branch[i]);
   }
