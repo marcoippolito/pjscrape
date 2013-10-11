@@ -12,16 +12,23 @@ var url ='http://www.ucimu.it/catalogo/imprese/v/cosberg/';
 //};
 
 request(url, querySelector);
+company = {};
 
 function querySelector (err, resp, body) {
-  var array = [];
+
   if (err)
     throw err;
   $ = cheerio.load(body);
-  var company_name = $('.page_title').text();
-  console.log(company_name);
-  var address = $('.street').html();
+  company.name = $('.page_title').text();
+  console.log(company.name);
+  company.address = $('.street').html();
   var toEl = /<br>/;
-  var newAddress = address.replace(toEl, " ");
+  var newAddress = company.address.replace(toEl, " ");
   console.log(newAddress);
+  var count = $('.name').length;
+  console.log(count);
+  var branches = [];
+//  $('.name').each(function(i, elem) {
+//    branches
+
 }
