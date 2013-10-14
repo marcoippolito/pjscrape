@@ -3,6 +3,9 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
+var company_object = require('./company_object');
+var Company = company_object.Company;
+var companyBranch = Company.companyBranch;
 //var readwrite = require('./read_g');
 var url ='http://www.ucimu.it/catalogo/imprese/v/cosberg/';
 //var param = 'street';
@@ -13,17 +16,11 @@ var url ='http://www.ucimu.it/catalogo/imprese/v/cosberg/';
 
 request(url, querySelector);
 
-var companyName; var companyMainAddress; var companyBranch = []; var companyBranchName;
-var companyBranchAddress;
 
-function Company(companyName, companyMainAddress, companyBranch, companyBranchName, companyBranchAddress) {
 
-  this.companyName = companyName;
-  this.companyMainAddress = companyMainAddress;
-  this.companyBranch = companyBranch; var i;
-}
+
 function querySelector (err, resp, body) {
-  var company = new Company(companyName, companyMainAddress, companyBranch);
+  var company = new Company();
   if (err)
     throw err;
   $ = cheerio.load(body);
