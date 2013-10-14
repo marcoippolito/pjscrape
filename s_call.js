@@ -5,8 +5,8 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var readwrite = require('./read_g');
 
-var url = 'http://www.ucimu.it/catalogo/imprese/elenco/';
-var param = 'a[href^="catalogo/imprese"]';
+var url = 'http://www.ucimu.it/en/catalogue/companies/list/';
+var param = 'a[href^="catalogue/companies"]';
 var myArray =[];
 var outputfile = 'ucimulist.csv';
 scrape = function(url, param) {
@@ -25,9 +25,7 @@ function querySelector (err, resp, body) {
   for (var i = myArray.length-1; i--;) {
     if (myArray[i] === 'Catalogo' || myArray[i] === 'Imprese Associate' || myArray[i] === 'Elenco completo' || myArray[i] === 'Elenco Completo' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' ) myArray.splice(i, 1);
   }
-//  console.log(myArray);
-//  var l= myArray.length;
-//  console.log(l);
+
   fs.writeFile(outputfile, myArray, function (err) {
     if (err) throw err;
     console.log('It\'s saved in: ' + outputfile);
@@ -37,4 +35,5 @@ function querySelector (err, resp, body) {
 var prova = './ucimulist.csv';
 
 readwrite.fromfiletoarray(prova);
-module.exports.querySelector = querySelector;
+//module.exports.querySelector = querySelector;
+module.exports.scrape = scrape;
