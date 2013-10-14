@@ -1,5 +1,7 @@
 var fs = require('fs');
+var s_call = require('./s_call');
 var outputfile;
+
 
 function fromfiletoarray (outputfile) {
 
@@ -16,6 +18,8 @@ function fromfiletoarray (outputfile) {
     for (var i = 0; i < l; i++) {
       url = 'http://www.ucimu.it/catalogo/imprese/v/' + companyLinks[i];
       console.log(url);
+//      var param = '#street div';
+//      s_call.scrape(url,param);
     }
   });
 }
