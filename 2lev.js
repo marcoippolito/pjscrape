@@ -12,14 +12,15 @@ var url ='http://www.ucimu.it/catalogo/imprese/v/cosberg/';
 //};
 
 request(url, querySelector);
-var companyName; var companyMainAddress; var companyBranch;
-function Company(companyName, companyMainAddress, companyBranch) {
+
+var companyName; var companyMainAddress; var companyBranch = []; var companyBranchName;
+var companyBranchAddress;
+
+function Company(companyName, companyMainAddress, companyBranch, companyBranchName, companyBranchAddress) {
+
   this.companyName = companyName;
   this.companyMainAddress = companyMainAddress;
-  function Branch(companyBranchName, companyBranchAddress) {
-    this.companyBranch.name = companyBranch.name;
-    this.companyBranch.address = companyBranch.address;
-  }
+  this.companyBranch = companyBranch; var i;
 }
 function querySelector (err, resp, body) {
   var company = new Company(companyName, companyMainAddress, companyBranch);
@@ -36,13 +37,13 @@ function querySelector (err, resp, body) {
   $('.name').each(function(i, elem) {
     count[i] = $(this).text();
   });
-  company.branch = [];
+
   for (var i = 0; i < count.length; i++) {
-    company.branch[i] = {
-      name: $('.name').eq(i).text(),
-      address: $('.address').eq(i+1).text()
+    companyBranch[i] = {
+      compayBranchName: $('.name').eq(i).text(),
+      companyBranchAddress: $('.address').eq(i+1).text()
     };
-  console.log(company.branch[i]);
+  console.log(companyBranch[i]);
   }
 
 }
