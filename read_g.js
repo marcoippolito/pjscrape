@@ -1,10 +1,8 @@
 var fs = require('fs');
-var s_call = require('./s_call');
 var outputfile;
 
-
 function fromfiletoarray (outputfile) {
-
+  // convert the content of a file to an array //
   fs.readFile(outputfile, 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
@@ -14,16 +12,8 @@ function fromfiletoarray (outputfile) {
     l = companyLinks.length;
     console.log(l);
     exports.getArray = companyLinks;
-
-    for (var i = 0; i < l; i++) {
-      url = 'http://www.ucimu.it/catalogo/imprese/v/' + companyLinks[i];
-      console.log(url);
-//      var param = '#street div';
-//      s_call.scrape(url,param);
-    }
   });
 }
-//var outputfile = './outputdata.csv';
-//fromfiletoarray(outputfile);
+
 
 module.exports.fromfiletoarray = fromfiletoarray;
