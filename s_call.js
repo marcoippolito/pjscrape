@@ -13,9 +13,9 @@ scrape = function(url, param) {
   request();
 };
 
-request(url, querySelector);
+request(url, exports.querySelector);
 
-function querySelector (err, resp, body) {
+exports.querySelector = function(err, resp, body) {
   if (err)
     throw err;
   $ = cheerio.load(body);
@@ -25,6 +25,7 @@ function querySelector (err, resp, body) {
   for (var i = myArray.length-1; i--;) {
     if (myArray[i] === 'Catalogo' || myArray[i] === 'Imprese Associate' || myArray[i] === 'Elenco completo' || myArray[i] === 'Elenco Completo' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' ) myArray.splice(i, 1);
   }
+  exports.getArray = myArray;
 //  console.log(myArray);
 //  var l= myArray.length;
 //  console.log(l);
@@ -32,9 +33,8 @@ function querySelector (err, resp, body) {
     if (err) throw err;
     console.log('It\'s saved in: ' + outputfile);
   });
-}
+};
 
 var buffer = './ucimulist.csv';
 
 readwrite.fromfiletoarray(buffer);
-module.exports.querySelector = querySelector;
