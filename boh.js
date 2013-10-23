@@ -2,20 +2,40 @@
 
 var s_call = require('./s_call.js');
 var natural = require('natural');
+var ndarray = require('./NDArray.js');
 var scrape = s_call.scrape;
-var url = [];
 var tokenizer = new natural.WordTokenizer({pattern: /\s/}); //token are separated by white spaces //
+var url;
 s_call.scrape (function () {
   // tokenization of s_call.getArray //
-  for (var i = 0; i < s_call.getArray.length; i++) {
-    console.log(s_call.getArray[i]);
+  var n = s_call.getArray.length;
+  for (var i = 0; i < n; i++) {
+//    console.log(s_call.getArray[i]);
     var tokenized = tokenizer.tokenize(s_call.getArray[i]);
+    var m = tokenized.length;
     var tokenized_new = [];
-    for (var j = 0; j < tokenized.length; j++) {
+    // remove "." within each token //
+    for (var j = 0; j < m; j++) {
       var toEl = /\./g;
       tokenized_new[j] = tokenized[j].replace(toEl, "");
+    // rules for each number of tokens //
+      if (m === 2) {
+	url = ndarray.matrix(n, 3, 'a');
+	console.log(url);
+      }
+      else if (m > 2) {
+	url = ndarray.matrix(n, 6, 'b');
+	console.log(url);
+      }
+      else {
+	url = ndarray.matrix(n, 1, 'c');
+	console.log(url);
+      }
+      console.log(tokenized_new);
+      console.log(m);
     }
-    console.log(tokenized_new);
-    console.log(tokenized_new.length);
   }
+//    console.log(tokenized_new);
+//    console.log(tokenized_new.length);
+
 });
