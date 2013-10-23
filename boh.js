@@ -10,13 +10,12 @@ s_call.scrape (function () {
   for (var i = 0; i < s_call.getArray.length; i++) {
     console.log(s_call.getArray[i]);
     var tokenized = tokenizer.tokenize(s_call.getArray[i]);
-    console.log(tokenized);
-    console.log(tokenized.length);
     var tokenized_new = [];
     for (var j = 0; j < tokenized.length; j++) {
       var toEl = /\./g;
       tokenized_new[j] = tokenized[j].replace(toEl, "");
     }
     console.log(tokenized_new);
+    console.log(tokenized_new.length);
   }
 });
