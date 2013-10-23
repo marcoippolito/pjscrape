@@ -22,6 +22,10 @@ s_call.scrape (function () {
       if (m === 2) {
 	url = ndarray.matrix(n, 3, 'a');
 	console.log(url);
+	for (var k = 0; k < n; k++) {
+	  url[k][0] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0];
+	  console.log(url[k][0]);
+	}
       }
       else if (m > 2) {
 	url = ndarray.matrix(n, 6, 'b');
