@@ -25,6 +25,10 @@ s_call.scrape (function () {
 	for (var k = 0; k < n; k++) {
 	  url[k][0] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0];
 	  console.log(url[k][0]);
+	  url[k][1] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[1];
+	  console.log(url[k][1]);
+	  url[k][2] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0] + '-' + tokenized_new[1];
+	  console.log(url[k][2]);
 	}
       }
       else if (m > 2) {
