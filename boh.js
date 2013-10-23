@@ -21,8 +21,7 @@ s_call.scrape (function () {
     // rules for each number of tokens //
       if (m === 2) {
 	url = ndarray.matrix(n, 3, 'a');
-	console.log(url);
-	for (var k = 0; k < n; k++) {
+ 	for (var k = 0; k < n; k++) {
 	  url[k][0] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0];
 	  console.log(url[k][0]);
 	  url[k][1] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[1];
@@ -33,11 +32,27 @@ s_call.scrape (function () {
       }
       else if (m > 2) {
 	url = ndarray.matrix(n, 6, 'b');
-	console.log(url);
-      }
+//	for (var k = 0; k < n; k++) {
+//	  url[k][0] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0];
+//	  console.log(url[k][0]);
+//	  url[k][1] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[1];
+//	  console.log(url[k][1]);
+//	  url[k][2] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[2];
+//	  console.log(url[k][2]);
+//	  url[k][3] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0] + '-' + tokenized_new[1];
+//	  console.log(url[k][3]);
+//	  url[k][4] = 'http://www.ucimu.it/en/catalogue/companies/' + tokenized_new[m-1];
+//	  console.log(url[k][4]);
+//	  url[k][5] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[m];
+//	  console.log(url[k][5]);
+	}
       else {
 	url = ndarray.matrix(n, 1, 'c');
-	console.log(url);
+	  console.log(url);
+//	for (var k =0; k < n; k++) {
+//	  url[k][0] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0];
+//	  console.log(url[k][0]);
+//	}
       }
       console.log(tokenized_new);
       console.log(m);
