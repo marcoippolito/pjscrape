@@ -3,22 +3,10 @@
 var s_call = require('./s_call.js');
 var natural = require('natural');
 //var ndarray = require('./NDArray.js');
-var request = require('request');
 var scrape = s_call.scrape;
 var tokenizer = new natural.WordTokenizer({pattern: /\s/}); //tokens are separated by white spaces //
 var url = [];
 var urls_array = [];
-
-
-// function to check the correctness of the url //
-var urlResponse = function(url){
-    rest.get(url).on('complete', function(result) {
-	if (result != Error) {
-	  urls_array.push(url);
-	}
-
-    });
-};
 
 s_call.scrape (function () {
   // tokenization of s_call.getArray //
