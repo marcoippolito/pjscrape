@@ -24,16 +24,8 @@ scrape = function(callback) {
     for (var i = myArray.length-1; i--;) {
       if (myArray[i] === 'Catalogo' || myArray[i] === 'Imprese Associate' || myArray[i] === 'Elenco completo' || myArray[i] === 'Elenco Completo' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' || myArray[i] === '\n\t\t\t\t\t\n\t\t\t\t' ) myArray.splice(i, 1);
     }
-
-//  fs.writeFile(outputfile, myArray, function (err) {
-//    if (err) throw err;
-//    console.log('It\'s saved in: ' + outputfile);
-//  });
-//  console.log('lunghezza di myArray:', myArray.length);
       callback();
   }
 };
-//var buffer = './ucimulist.csv';
-//readwrite.fromfiletoarray(buffer);
 
 module.exports.scrape = scrape;
