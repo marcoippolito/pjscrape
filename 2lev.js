@@ -5,8 +5,8 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var company_object = require('./company_object');
 var Company = company_object.Company;
-var companyBranch = Company.companyBranch;
-//var readwrite = require('./read_g');
+var companyBranch = [];
+
 var url ='http://www.ucimu.it/catalogo/imprese/v/cosberg/';
 //var param = 'street';
 
@@ -24,10 +24,10 @@ function querySelector (err, resp, body) {
   //Extract company's name and headquarter's address//
   companyName = $('.page_title').text();
   console.log(companyName);
-  companyMainAddress = $('.street').html();
+  companyHeadquarter = $('.street').html();
   var toEl = /<br>/;
-  var newAddress = companyMainAddress.replace(toEl, " ");
-  console.log(newAddress);
+  var companyMainAddress = companyHeadquarter.replace(toEl, " ");
+  console.log(companyMainAddress);
   //Extract name and address of each branch //
   // First detect number and names of branches //
   var count = [];
@@ -38,10 +38,13 @@ function querySelector (err, resp, body) {
   // Extract and save name and address of each branch of the company //
   for (var i = 0; i < l; i++) {
     companyBranch[i] = {
-      compayBranchName: $('.name').eq(i).text(),
+      companyBranchName: $('.name').eq(i).text(),
       companyBranchAddress: $('.address').eq(i+1).text()
     };
   console.log(companyBranch[i]);
+  exports.companyName = companyName;
+  exports.companyHeadquarter = companyHeadquarter;
+  exports.getObject = companyBranch[i];
   }
 
 }
