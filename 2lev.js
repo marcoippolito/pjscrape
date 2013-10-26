@@ -34,7 +34,7 @@ function querySelector (err, resp, body) {
   $ = cheerio.load(body);
   //Extract company's name and headquarter's address//
   companyName = $('.page_title').text(); //companyName//
-  console.log(companyName);
+//  console.log(companyName);
   companyHeadquarter = $('.street').html();
   var toEl = /<br>/;
   var companyMainAddress = companyHeadquarter.replace(toEl, " "); //companyMainAddress//
@@ -53,16 +53,15 @@ function querySelector (err, resp, body) {
       companyBranchName: $('.name').eq(i).text(),
       companyBranchAddress: $('.address').eq(i+1).text()
     };
-    companyBranch.push(companyBranch[i]);
-//    return companyBranch;
-//    var company = new createcompany(companyName, companyMainAddress, companyBranch);
-//    console.log(company);
+
+    var company = new createcompany(companyName, companyMainAddress, companyBranch);
+    console.log(company);
 
   }
   console.log(companyBranch);
 //  var companyBranch = new createcompanyBranch(companyBranchName, companyBranchAddress);
-  var company = new createcompany(companyName, companyMainAddress, companyBranch);
-  console.log(company);
+//  var company = new createcompany(companyName, companyMainAddress, companyBranch);
+//  console.log(company);
 
 }
 
