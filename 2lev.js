@@ -54,14 +54,14 @@ function querySelector (err, resp, body) {
       companyBranchAddress: $('.address').eq(i+1).text()
     };
 
-    var company = new createcompany(companyName, companyMainAddress, companyBranch);
-    console.log(company);
+//    var company = new createcompany(companyName, companyMainAddress, companyBranch);
+//    console.log(company);
 
   }
-  console.log(companyBranch);
-//  var companyBranch = new createcompanyBranch(companyBranchName, companyBranchAddress);
-//  var company = new createcompany(companyName, companyMainAddress, companyBranch);
-//  console.log(company);
+//  console.log(companyBranch);
+
+  var company = new createcompany(companyName, companyMainAddress, companyBranch);
+  console.log(company);
 
 }
 
