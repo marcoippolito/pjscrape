@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 //var company_object = require('./company_object');
 //var createcompany = company_object.createcompany;
-var companyMainAddress; var companyBranchName; var companyBranchAddress;
+var company; var companyMainAddress; var companyBranchName; var companyBranchAddress;
 var url ='http://www.ucimu.it/catalogo/imprese/v/cosberg/';
 
 //scrape = function(url, param) {
@@ -19,14 +19,7 @@ function querySelector (err, resp, body) {
   function createcompany (){
     this.companyName = companyName;
     this.companyMainAddress = companyMainAddress;
-    this.companyBranch = createcompanyBranch();
-  }
-
-  function createcompanyBranch() {
-//    this.companyBranch = companyBranch;
-    this.companyBranch = [];
-    this.companyBranchName = companyBranchName;
-    this.companyBranchAddress = companyBranchAddress;
+    this.companyBranch = companyBranch;
   }
 
   if (err)
@@ -53,16 +46,12 @@ function querySelector (err, resp, body) {
       companyBranchName: $('.name').eq(i).text(),
       companyBranchAddress: $('.address').eq(i+1).text()
     };
-
-//    var company = new createcompany(companyName, companyMainAddress, companyBranch);
-//    console.log(company);
-
   }
-//  console.log(companyBranch);
-
+  // Assign to the variable "company" the data just extracted //
   var company = new createcompany(companyName, companyMainAddress, companyBranch);
   console.log(company);
 
 }
 
 module.exports.request = request;
+module.exports.company = company;
