@@ -1,15 +1,13 @@
-var company; var companyBranch;
-function Company (company) {
-  company = {
-    companyName: 'companyName',
-    companyMainAddress: 'companyHeadquarter',
-    companyBranch: {
-      companyBranchName: 'companyBranchName',
-      companyBranchAddress: 'companyBranchAddress'
-    }
-  };
+#!/usr/bin/env node
+
+var companyName; var companyHeadquarter; var companyBranch;
+
+function createcompany (){
+  this.companyName = companyName;
+  this.companyHeadquarter = companyHeadquarter;
+  this.companyBranch = companyBranch;
 }
 
-module.exports.Company = Company;
-module.exports.company = company;
+module.exports.createcompany = createcompany;
+module.exports.companyHeadquarter = companyHeadquarter;
 module.exports.companyBranch = companyBranch;
