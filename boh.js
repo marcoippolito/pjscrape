@@ -2,8 +2,10 @@
 
 var s_call = require('./s_call.js');
 var natural = require('natural');
+var uniqueinarray = require('./uniqueinarray.js');
+var unique = uniqueinarray.unique;
 //var ndarray = require('./NDArray.js');
-var scrape = s_call.scrape;
+//var scrape = s_call.scrape;
 var tokenizer = new natural.WordTokenizer({pattern: /\s/}); //tokens are separated by white spaces //
 var url = [];
 var urls_array = [];
@@ -20,14 +22,19 @@ s_call.scrape (function () {
     for (var j = 0; j < m; j++) {
       var toEl = /\./g;
       tokenized_new[j] = tokenized[j].replace(toEl, "");
-    //Rules for each number of tokens //
-	    url[i] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[j];
-	    urls_array.push(url[i]);
-	    url[i] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0] + '-' + tokenized_new[1];
-	    urls_array.push(url[i]);
+    //All possible urls are generated and saved in "urls_array" array //
+      url[i] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[j];
+      urls_array.push(url[i]);
+      url[i] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[0] + '-' + tokenized_new[1];
+      urls_array.push(url[i]);
 
     }
+
   }
-console.log(urls_array);
-console.log(urls_array.length);
+  var urls_array_new = urls_array.unique();
+  console.log(urls_array_new);
+
+
 });
+
+//module.exports.s_call.scrape = s_call.scrape;
