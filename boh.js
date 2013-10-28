@@ -10,7 +10,7 @@ var tokenizer = new natural.WordTokenizer({pattern: /\s/}); //tokens are separat
 var url = [];
 var urls_array = [];
 
-s_call.scrape (function () {
+s_call.scrape (function callback() {
   // tokenization of s_call.getArray //
   var n = s_call.getArray.length;
   for (var i = 0; i < n; i++) {
@@ -29,11 +29,10 @@ s_call.scrape (function () {
       urls_array.push(url[i]);
 
     }
-
   }
   var urls_array_new = urls_array.unique();
   console.log(urls_array_new);
-
+  console.log(urls_array_new.length);
 
 });
 
