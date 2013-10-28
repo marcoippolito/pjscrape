@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var s_call = require('./s_call.js');
+var scrape = s_call.scrape;
 var natural = require('natural');
 var uniqueinarray = require('./uniqueinarray.js');
 var unique = uniqueinarray.unique;
@@ -10,7 +11,7 @@ var tokenizer = new natural.WordTokenizer({pattern: /\s/}); //tokens are separat
 var url = [];
 var urls_array = [];
 
-s_call.scrape (function callback() {
+scrape (function callback() {
   // tokenization of s_call.getArray //
   var n = s_call.getArray.length;
   for (var i = 0; i < n; i++) {
@@ -29,11 +30,12 @@ s_call.scrape (function callback() {
       urls_array.push(url[i]);
 
     }
+//  cb();
   }
   var urls_array_new = urls_array.unique();
   console.log(urls_array_new);
   console.log(urls_array_new.length);
-
+  exports.getArray = urls_array_new;
 });
 
 //module.exports.s_call.scrape = s_call.scrape;
