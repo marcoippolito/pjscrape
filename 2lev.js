@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 //var company_object = require('./company_object');
 var company; var companyBranchName; var companyBranchAddress;
-var url ='http://www.ucimu.it/en/catalogue/companies/v/';
+var url ='http://www.ucimu.it/en/catalogue/companies/v/adige/';
 
 //scrape = function(url, param) {
 //  request();
@@ -25,7 +25,7 @@ function querySelector (err, resp, body) {
     throw err;
   $ = cheerio.load(body);
   var h2 = $('.editor').text();
-  console.log(h2);
+//  console.log(h2);
   if (h2 == 'Item not found') {
     return;
   }
@@ -34,7 +34,7 @@ function querySelector (err, resp, body) {
     companyName = $('.page_title').text(); //companyName//
     var torm = /\n|\t/g;
     var companyName = companyName.replace(torm, '');
-    console.log(companyName);
+  //  console.log(companyName);
     companyHeadquarter = $('.street').html();
     if (! companyHeadquarter) {
       return;
@@ -42,7 +42,7 @@ function querySelector (err, resp, body) {
     else {
       var toEl = /<br>|\\s/g;
       // companyHeadquarter //
-      var companyHeadquarter = companyHeadquarter.replace(toEl, '' );
+      companyHeadquarter = companyHeadquarter.replace(toEl, '' );
     }
 
     //Extract name and address of each branch //
@@ -61,8 +61,8 @@ function querySelector (err, resp, body) {
       };
     }
   // Assign the data just extraced to the variable "company" //
-//  var company = new createcompany(companyName, companyHeadquarter, companyBranch);
-//  console.log(company);
+  var company = new createcompany(companyName, companyHeadquarter, companyBranch);
+  console.log(company);
   }
 
 }
