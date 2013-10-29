@@ -5,12 +5,13 @@ var scrape = s_call.scrape;
 var natural = require('natural');
 var uniqueinarray = require('./uniqueinarray.js');
 var unique = uniqueinarray.unique;
-//var ndarray = require('./NDArray.js');
-//var scrape = s_call.scrape;
+var slev = require('./2lev');
+var scrapesl = slev.scrapesl;
 var tokenizer = new natural.WordTokenizer({pattern: /\s/}); //tokens are separated by white spaces //
 var url = [];
 var urls_array = [];
 
+//wrapper = function (cb) {
 scrape (function callback() {
   // tokenization of s_call.getArray //
   var n = s_call.getArray.length;
@@ -30,12 +31,16 @@ scrape (function callback() {
       urls_array.push(url[i]);
 
     }
-//  cb();
+
   }
   var urls_array_new = urls_array.unique();
   console.log(urls_array_new);
-  console.log(urls_array_new.length);
+  var ul = urls_array_new.length;
+  console.log(ul);
+  console.log(urls_array_new);
+
   exports.getArray = urls_array_new;
 });
 
-//module.exports.s_call.scrape = s_call.scrape;
+
+module.exports.scrape = scrape;
