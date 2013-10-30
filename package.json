@@ -1,0 +1,65 @@
+{
+  "name": "ggc",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "author": "Marco Ippolito <ippolito.marco@.com>",
+  "description": "a multi-player platform to test business strategies",
+  "contributors": [
+    {
+      "name": "Marco Ippolito",
+      "email": "ippolito.marco@gmail.com"
+    }
+  ],
+  "bin": {
+    "http-server": "./bin/http-server"
+  },
+  "scripts": {
+    "start": "node ./bin/http-server",
+    "test": "vows --spec --isolate",
+    "predeploy": "echo This will be run before deploying the app",
+    "postdeploy": "echo This will be run after deploying the app"
+  },
+  "main": "./lib/http-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcoippolito/.git"
+  },
+  "keywords": [
+    "multi-player",
+    "strategy",
+    "test"
+  ],
+  "dependencies": {
+    "cheerio": "*",
+    "passport": "*",
+    "express": "*",
+    "mean-logger": "*",
+    "mongoose": "*",
+    "passport-local": "*",
+    "passport-twitter": "*",
+    "passport-facebook": "*",
+    "passport-google-oauth": "*",
+    "connect-mongo": "*",
+    "view-helpers": "*",
+    "async": "*",
+    "bower": "*",
+    "underscore": "*",
+    "system": "*",
+    "phantom": "*",
+    "xpath": "*",
+    "validator": "*",
+    "express-validator": "*",
+    "natural": "~0.1.23",
+    "restler": "~2.0.1",
+    "node-geocoder": "~0.2.0"
+  },
+  "analyze": false,
+  "devDependencies": {
+    "vows": "0.5.x",
+    "request": "2.1.x"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  }
+}
