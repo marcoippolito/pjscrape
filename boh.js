@@ -22,7 +22,7 @@ wrapper = function (cb) {
       var tokenized_new = [];
       // remove "." within each token //
       for (var j = 0; j < m; j++) {
-	var toEl = /\./g;
+	var toEl = /\.|'/g;
 	tokenized_new[j] = tokenized[j].replace(toEl, "");
       //All possible urls are generated and saved in "urls_array" array //
 	url[i] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[j];
