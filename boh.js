@@ -8,8 +8,11 @@ var unique = uniqueinarray.unique;
 var slev = require('./2lev');
 var scrapesl = slev.scrapesl;
 var tokenizer = new natural.WordTokenizer({pattern: /\s/}); //tokens are separated by white spaces //
+var indexof = require('./indexof.js');
+var removeElemIfWord = indexof.removeElemIfWord;
 var url = [];
 var urls_array = [];
+var word = 'undefined';
 
 wrapper = function (cb) {
   scrape (function callback() {
@@ -36,7 +39,8 @@ wrapper = function (cb) {
     var ul = urls_array_new.length;
 //    console.log(ul);
 //    console.log(urls_array_new);
-
+    // remove from the urls_array_new the elements containing the word "undefined"
+    removeElemIfWord(urls_array_new, word);
     exports.getArray = urls_array_new;
 
     cb();
