@@ -24,6 +24,7 @@ wrapper = function (cb) {
       for (var j = 0; j < m; j++) {
 	var toEl = /\.|'/g;
 	tokenized_new[j] = tokenized[j].replace(toEl, "");
+	tokenized_new[j] = tokenized_new[j].toLowerCase();
       //All possible urls are generated and saved in "urls_array" array //
 	url[i] = 'http://www.ucimu.it/en/catalogue/companies/v/' + tokenized_new[j];
 	urls_array.push(url[i]);
