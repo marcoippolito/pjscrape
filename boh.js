@@ -3,6 +3,7 @@
 var s_call = require('./s_call.js');
 var scrape = s_call.scrape;
 var natural = require('natural');
+var fs = require('fs');
 var uniqueinarray = require('./uniqueinarray.js');
 var unique = uniqueinarray.unique;
 var slev = require('./2lev');
@@ -13,6 +14,7 @@ var removeElemIfWord = indexof.removeElemIfWord;
 var url = [];
 var urls_array = [];
 var word = 'undefined';
+var word2 = 'mcm';
 
 wrapper = function (cb) {
   scrape (function callback() {
@@ -37,10 +39,13 @@ wrapper = function (cb) {
     }
     var urls_array_new = urls_array.unique();
     var ul = urls_array_new.length;
-//    console.log(ul);
-//    console.log(urls_array_new);
+
     // remove from the urls_array_new the elements containing the word "undefined"
     removeElemIfWord(urls_array_new, word);
+    removeElemIfWord(urls_array_new, word2);
+    // sort urls_array_new elements in alphabetic order
+    urls_array_new.sort();
+
     exports.getArray = urls_array_new;
 
     cb();
