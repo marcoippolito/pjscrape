@@ -61,10 +61,9 @@ scrapesl = function(url) {
 	for (var i = 0; i < l; i++) {
 	  companyBranch[i] = {
 	    companyBranchName : $('.name').eq(i).text(),
+	    // the address has to be "cleaned" of <br>
 	    companyBranchAddress : ($('.address').eq(i+1).html()).replace(torp, ' ')
-//	    companyBranchAddressNew : ($('.address').html()).replace(torp, ' ')
 	  };
-
 	}
       exports.getArray = urlsManyBranches;
        // Assign the data just extracted to the variable "company" //
