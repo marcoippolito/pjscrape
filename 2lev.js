@@ -3,6 +3,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
+
 //var company_object = require('./company_object');
 var company; var companyBranchName; var companyBranchAddress;
 
@@ -39,7 +40,7 @@ scrapesl = function(url) {
       else {
 	var toEl = /<br>|\\s/g;
 	// companyHeadquarter //
-	companyHeadquarter = companyHeadquarter.replace(toEl, '' );
+	companyHeadquarter = companyHeadquarter.replace(toEl, ' ' );
       }
 
       //Extract name and address of each branch //
@@ -49,17 +50,27 @@ scrapesl = function(url) {
 	count[i] = $(this).text();
       });
       l = count.length;
-      //Extract and save name and address of each branch of the company //
-      var companyBranch = [];
-      for (var i = 0; i < l; i++) {
-	companyBranch[i] = {
-	  companyBranchName: $('.name').eq(i).text(),
-	  companyBranchAddress: $('.address').eq(i+1).text()
-	};
+      var urlsManyBranches = [];
+      // If this company has a number of branches>10 -> put its url in a separated array and do not extract name and address of the branches
+      if (l > 10) {
+	urlsManyBranches.push(url);
       }
-    // Assign the data just extraced to the variable "company" //
-    var company = new createcompany(companyName, companyHeadquarter, companyBranch);
-    console.log(company);
+      else {
+	//Extract and save name and address of each branch of the company //
+	var companyBranch = []; var torp = /<br>|\\s/g; var companyBranchAddress;
+	for (var i = 0; i < l; i++) {
+	  companyBranch[i] = {
+	    companyBranchName : $('.name').eq(i).text(),
+	    companyBranchAddress : ($('.address').eq(i+1).html()).replace(torp, ' ')
+//	    companyBranchAddressNew : ($('.address').html()).replace(torp, ' ')
+	  };
+
+	}
+      exports.getArray = urlsManyBranches;
+       // Assign the data just extracted to the variable "company" //
+      var company = new createcompany(companyName, companyHeadquarter, companyBranch);
+      console.log(company);
+    }
     }
   }
 };
