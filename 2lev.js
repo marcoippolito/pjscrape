@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var geonodermaster = require('./geonodermaster.js');
 var geoNoder = geonodermaster.geoNoder;
-
+var lat = geoNoder.lat; var long = geoNoder.long;
 // var company_object = require('./company_object');
 var company; var companyBranchName; var companyBranchAddress;
 var togli = /&amp;/; var point = /\\.\\s/; var toEl = /<br>|\\s/g;
@@ -49,7 +49,11 @@ scrapesl = function(url) {
 	companyHeadquarter = companyHeadquarter.replace(toEl, ' ' );
 	companyHeadquarter = companyHeadquarter.replace(togli,'');
 	companyHeadquarter = companyHeadquarter.replace(point,'.');
-	companyHeadquarterGeo = geoNoder(companyHeadquarter);
+	geoNoder(companyHeadquarter);
+	companyHeadquarterGeo = {
+	  lat: lat,
+	  long: long
+	};
       }
      // BRANCHES //
       //Extract name and address of each branch //
