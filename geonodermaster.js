@@ -7,16 +7,16 @@ var lat; var long;
 // geocoordinates through Nominatim (OpenStreetMap) //
 function geoNoder (address) {
   geonoder.toCoordinates(address, geonoder.providers.nominatim, function(lat, long) {
-    console.log('Lat nominatim: ' + lat + ' Long nominatim: ' + long); // Lat: 41.8965209 Long: 12.4805225
-    if (lat === null || long === null) {
+    if (lat !== null && long !== null) {
+      console.log('Lat nominatim: ' + lat + ' Long nominatim: ' + long); // Lat: 41.8965209 Long: 12.4805225
+    }
+    else {
     // geocoordinates through Google //
       geonoder.toCoordinates(address, geonoder.providers.google, function(lat, long) {
 	console.log('Lat google: ' + lat + ' Long google: ' + long);
       });
     }
-    else {
-      return;
-    }
+
   });
 }
 
