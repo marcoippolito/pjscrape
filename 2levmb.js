@@ -6,6 +6,8 @@ var fs = require('fs');
 
 // var company_object = require('./company_object');
 var company; var companyBranchName; var companyBranchAddress;
+var togli = /$amp;/; var point = /\\.\\s/; var toEl = /<br>|\\s/g;
+var nt = /\n|t/g; var ntn = /\t/g;
 
 scrapeslmb = function(url) {
 
@@ -32,17 +34,19 @@ scrapeslmb = function(url) {
       companyName = $('.page_title').text(); //companyName//
       var torm = /\n|\t/g;
       var companyName = companyName.replace(torm, '');
+      companyName = companyName.replace(nt, '');
+      companyName = companyName.replace(ntn, '');
       //console.log(companyName);
       companyHeadquarter = $('.street').html();
       if (! companyHeadquarter) {
 	return;
       }
       else {
-	var toEl = /<br>|\\s/g;
-	// companyHeadquarter //
+	// HEADQUARTER //
 	companyHeadquarter = companyHeadquarter.replace(toEl, ' ' );
+	companyHeadquarter = companyHeadquarter.replace(togli, '');
+	companyHeadquarter = companyHeadquarter(point, '.');
       }
-
       //Extract name and address of each branch //
       //First detect number and names of branches //
       var count = [];
@@ -57,12 +61,12 @@ scrapeslmb = function(url) {
       }
       else {
 	//Extract and save name and address of each branch of the company //
-	var companyBranch = []; var torp = /<br>|\\s/g; var companyBranchAddress;
+	var companyBranch = []; var companyBranchAddress;
 	for (var i = 0; i < l; i++) {
 	  companyBranch[i] = {
 	    companyBranchName : $('.name').eq(i).text(),
 	    // the address has to be "cleaned" of <br>
-	    companyBranchAddress : ($('.address').eq(i+1).html()).replace(torp, ' ')
+	    companyBranchAddress : ($('.address').eq(i+1).html()).replace(toEl, ' ')
 	  };
 	}
       exports.getArray = urlsFewBranches;
