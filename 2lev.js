@@ -10,9 +10,16 @@ var lat = geoNoder.lat; var long = geoNoder.long;
 var company; var companyBranchName; var companyBranchAddress;
 var togli = /&amp;/; var point = /\\.\\s/; var toEl = /<br>|\\s/g;
 var nt = /\n|t/g; var ntn = /\t/g;
-
+var address;
 
 scrapesl = function(url) {
+
+  function addressclean(address) {
+    address = address.replace(toEl, ' ');
+    address = address.replace(togli, '');
+    address = address.replace(point, '.');
+    return address;
+  }
 
   request(url, querySelector);
 
@@ -46,14 +53,11 @@ scrapesl = function(url) {
       }
       else {
      // HEADQUARTER //
-	companyHeadquarter = companyHeadquarter.replace(toEl, ' ' );
-	companyHeadquarter = companyHeadquarter.replace(togli,'');
-	companyHeadquarter = companyHeadquarter.replace(point,'.');
-	geoNoder(companyHeadquarter);
-	companyHeadquarterGeo = {
-	  lat: lat,
-	  long: long
-	};
+	companyHeadquarter = addressclean(companyHeadquarter);
+//	companyHeadquarter = companyHeadquarter.replace(toEl, ' ' );
+//	companyHeadquarter = companyHeadquarter.replace(togli,'');
+//	companyHeadquarter = companyHeadquarter.replace(point,'.');
+	companyHeadquarterGeo = geoNoder(companyHeadquarter);
       }
      // BRANCHES //
       //Extract name and address of each branch //
